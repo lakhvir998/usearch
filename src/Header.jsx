@@ -3,9 +3,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import cx from "classnames";
 import { isMobile } from "react-device-detect";
-
 import BurgerMenu from "./BurgerMenu";
-import MegaMenu from "./MegaMenu";
+import MegaMenu from "./components/mega-menu";
 
 const Header = () => {
   const { fixed, theme, title } = useSelector((state) => state.headerSettings);
