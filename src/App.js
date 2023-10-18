@@ -11,6 +11,13 @@ function App() {
     ReactGA.pageview(location.pathname);
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  useEffect(() => {
+    const loaderElement = document.querySelector(".loader-container");
+    if (loaderElement) {
+      loaderElement.remove();
+    }
+  }, []);
   return (
     <div className="main-wrapper">
       <Header />
