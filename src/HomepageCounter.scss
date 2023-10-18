@@ -1,0 +1,119 @@
+@import "./assets/SCSS/media";
+@import "./assets/SCSS/variables";
+
+.usearch__homepage {
+  &__counter {
+    &-container {
+      padding: 40px 0 80px;
+      min-height: 173px;
+      background: rgb(210, 223, 235);
+      background: linear-gradient(
+        0deg,
+        #d2dfeb42 13%,
+        rgba(255, 255, 255, 1) 100%
+      );
+
+      @include media(smallTablet) {
+        padding: 40px 0 60px;
+      }
+    }
+
+    &-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+
+      h2 {
+        font-family: $fontMulish600;
+        font-size: 32px;
+
+        @include media(mobile) {
+          font-size: 24px;
+        }
+      }
+    }
+
+    &-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 25px;
+      min-height: 146px;
+      width: 100%;
+
+      @include media(largeDesktop) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include media(smallTablet) {
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+        margin: 0 auto;
+      }
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      background: #fff;
+      border: 1px solid #e7ecf3;
+      box-shadow: 0px 0px 20px rgba(127, 157, 254, 0.15);
+      border-radius: 16px;
+      padding: 30px 0;
+
+      @include media(mobile) {
+        padding: 30px 15px;
+        min-width: initial;
+        border: none;
+      }
+
+      .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .text {
+        white-space: nowrap;
+        // font-size: 16px;
+        font-size: 1.65rem;
+        color: #4e5768;
+        margin-top: -10px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        font-family: $fontMulish300;
+
+        @include media(tablet) {
+          margin-top: -15px;
+        }
+
+        @include media(mobile) {
+          font-size: 14px;
+        }
+      }
+
+      .counter-number {
+        // font-size: 40px;
+        font-size: 4.2rem;
+        color: $textGray;
+        font-family: $fontMulish600;
+        margin-top: -10px;
+
+        @include media(tablet) {
+          font-size: 70px;
+        }
+
+        @include media(mobile) {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+}

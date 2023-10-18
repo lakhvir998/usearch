@@ -1,0 +1,867 @@
+@import "~assets/SCSS/variables";
+@import "~assets/SCSS/media";
+
+@mixin borderBottom {
+  &::before {
+    content: "";
+    width: 30vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    height: 2px;
+    background-color: #dddddd;
+  }
+}
+
+@mixin mapViewIcon($leftPosition: 20px) {
+  .mapview-icon {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: $leftPosition;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  &:hover {
+    .mapview-icon {
+      display: flex;
+    }
+  }
+}
+
+@mixin search-console($device-name, $width, $input-width) {
+  $input-container-padding: null;
+  $button-clear-margin-right: null;
+
+  .console {
+    border-radius: 8px;
+    box-sizing: border-box;
+    outline: none;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    background-color: #fff !important;
+    position: relative;
+
+    &-inner {
+      width: 100%;
+      max-width: 768px;
+      margin: 0 auto;
+      position: relative;
+
+      @include media(mobile) {
+        width: 100%;
+      }
+
+      .btn-search {
+        position: absolute;
+        left: 10px;
+        z-index: 99999;
+      }
+
+      .usearch__autocomplete-new__input {
+        padding-left: 40px;
+        font-family: $fontMulish500;
+        color: #434850;
+
+        &::placeholder {
+          color: #929db3;
+          font-family: $fontMulish300;
+        }
+      }
+    }
+
+    &.opened {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    @if ($device-name == "mobile") {
+      $input-container-padding: 0 0px 0 10px;
+      $button-clear-margin-right: 0;
+
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05),
+        0 1px 3px 1px rgba(0, 0, 0, 0.16);
+      background-color: #fff;
+      flex: 0 0 $width;
+      z-index: 2;
+    } @else {
+      $input-container-padding: 0 10px 0 0;
+      $button-clear-margin-right: 15px;
+      flex: 0 0 $width;
+      // border: 1px solid #ececec;
+      box-shadow: 1px 0px 10px rgba(173, 184, 216, 0.2);
+      // &:hover,
+      // &.active {
+      //   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+      //     0 2px 4px 1px rgba(0, 0, 0, 0.18);
+      // }
+
+      &.opened {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+
+    form {
+      width: 100%;
+      height: 50%;
+      padding: 0 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-container {
+      position: relative;
+      padding: $input-container-padding;
+      display: flex;
+      height: 100%;
+      flex: 1;
+      border-right: 1px solid #ebedf1;
+      margin-right: 20px;
+
+      @include media(mobile) {
+        margin-right: 10px;
+        border-right: none;
+        padding-right: 20px;
+        padding-left: 0;
+      }
+
+      .input-search {
+        border: none;
+        outline: none;
+        border-radius: 6px;
+        flex: 1 1;
+      }
+
+      .btn-clear {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100000;
+        margin-right: $button-clear-margin-right;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .btn-search {
+        cursor: pointer;
+        z-index: 100000;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        flex: 0 0 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include media(mobile) {
+          flex: 0 0 20px;
+        }
+      }
+    }
+  }
+}
+
+@mixin header(
+  $device-name,
+  $orientation,
+  $padding-top,
+  $search-console-width,
+  $input-width
+) {
+  .header {
+    display: flex;
+    flex-direction: row;
+    padding-top: $padding-top;
+
+    @if ($device-name == "mobile") {
+      flex-direction: column;
+      margin-left: 8px;
+      margin-right: 8px;
+
+      .logo-mobile {
+        display: flex;
+        justify-content: center;
+        min-height: 48px;
+        max-height: 48px;
+
+        .usearch__burger-menu-container {
+          top: 17px;
+          transform: initial;
+        }
+
+        img {
+          width: 30px;
+          height: auto;
+          object-fit: cover;
+          margin-top: 9px;
+          margin-bottom: 9px;
+        }
+      }
+    }
+
+    $logo-width: 100px;
+    $a-margin-right: 20px;
+    $a-margin-left: 0;
+
+    @if ($device-name == "tablet") {
+      @if ($orientation == "landscape") {
+        $logo-width: 50px;
+        $a-margin-right: 12px;
+        $a-margin-left: 40px;
+      }
+    }
+
+    .logo {
+      flex: 0 0 $logo-width;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      a {
+        margin-right: $a-margin-right;
+        margin-left: $a-margin-left;
+
+        img {
+          width: 30px;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+    }
+
+    @include search-console($device-name, $search-console-width, $input-width);
+  }
+}
+
+@mixin tabContainer($device-name) {
+  .tab-container {
+    border-bottom: 1px solid #ececec;
+    display: flex;
+
+    @if ($device-name == "mobile") {
+      margin-top: 3px;
+      .left-side {
+        flex: 0 0 8px;
+      }
+    } @else if ($device-name == "tablet") {
+      margin-top: 16px;
+      .left-side {
+        flex: 0 0 30px;
+      }
+    } @else {
+      margin-top: 13px;
+      .left-side {
+        flex: 0 0 100px;
+      }
+    }
+
+    .custom-nav-tab {
+      @if ($device-name == "mobile") {
+        height: 36px;
+        margin-left: 12px;
+      } @else {
+        height: 39px;
+      }
+
+      li {
+        font-size: 11px;
+
+        @if ($device-name == "mobile") {
+          padding-top: 12px;
+          &:first-child {
+            margin: 0 7px 0 0;
+          }
+          &:not(:first-child) {
+            margin: 0 7px;
+          }
+        } @else {
+          padding: 3px 0;
+          line-height: 30px;
+          margin: 0 12px;
+
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+
+        a {
+          color: $text-color-primary-dark !important;
+
+          @if ($device-name == "mobile") {
+            padding: 0 6px !important;
+          } @else {
+            padding: 0 8px !important;
+          }
+
+          &.active {
+            font-weight: 600 !important;
+          }
+        }
+
+        &.hover {
+          border-bottom: 3px solid #ccc;
+        }
+
+        &.disabled {
+          a {
+            color: #b9b9b9 !important;
+            cursor: initial !important;
+          }
+
+          &:hover {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin mainContent($device-name, $orientation) {
+  $min-height: calc(100vh - 173px);
+
+  @if ($device-name == "mobile") {
+    @if ($orientation == "landscape") {
+      $min-height: calc(var(--windowInnerHeight) - 172px);
+    } @else if ($orientation == "portrait") {
+      $min-height: calc(var(--windowInnerHeight) - 172px);
+    }
+  } @else if($device-name == "tablet") {
+    $min-height: calc(var(--windowInnerHeight) - 148px);
+  }
+
+  .content {
+    display: flex;
+    min-height: $min-height !important;
+
+    &.no-more-results {
+      padding-bottom: 70px;
+    }
+
+    &.browser {
+      min-width: 1320px;
+    }
+  }
+}
+
+@mixin itemsContainer($device-name, $orientation) {
+  .items-container {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+
+    @if ($device-name == "mobile") {
+      margin-right: 5px !important;
+      margin-left: 5px !important;
+
+      .item-row-mobile {
+        border-radius: 6px;
+        -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.14);
+        box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.14);
+        margin: 8px 0 !important;
+        padding: 16px !important;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff !important;
+
+        .title {
+          font-size: 18px;
+          line-height: 22px;
+          font-weight: normal;
+          color: #1a0dab !important;
+
+          &:visited {
+            color: #609 !important;
+          }
+        }
+
+        .url {
+          word-wrap: break-word;
+          color: #006621 !important;
+          padding-top: 1px;
+          line-height: 20px;
+          font-size: 14px;
+          font-weight: 400;
+          text-decoration: none;
+          cursor: text;
+          border-bottom: 1px solid #ddd;
+          padding-bottom: 6px;
+          margin-bottom: 6px;
+        }
+
+        .description {
+          font-weight: normal;
+          font-size: 14px;
+          color: $text-color-primary-dark !important;
+        }
+      }
+
+      .news-row-mobile {
+        margin: 0 3px 10px 3px !important;
+        padding: 16px !important;
+        background-color: #fff;
+        box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+        border-radius: 8px;
+        display: flex;
+
+        &:first-child {
+          margin-top: 10px !important;
+        }
+
+        .description {
+          flex: 1 1;
+          display: flex;
+          flex-direction: column;
+          padding-right: 16px;
+
+          .domain {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px !important;
+
+            img {
+              width: auto;
+              height: 16px;
+              margin-right: 5px;
+            }
+          }
+
+          .title {
+            font-size: 16px;
+            line-height: 20px;
+            color: #202124;
+            margin-bottom: 8px;
+          }
+
+          .time {
+            font-size: 11px;
+            color: #5f6368;
+            line-height: 16px;
+          }
+        }
+
+        .image {
+          flex: 0 0 92px;
+
+          .news-image {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+          }
+        }
+      }
+    } @else {
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+
+      @if ($device-name == "tablet" and $orientation == "landscape") {
+        min-width: 557px !important;
+      } @else {
+        min-width: 648px !important;
+      }
+
+      .item-row {
+        display: flex;
+        padding: 12px 20px 0 0;
+        margin: 0 0 2px;
+
+        &:first-child {
+          padding-top: 10px;
+        }
+
+        .image-column {
+          flex: 13% 0 0;
+        }
+
+        .content-column {
+          display: flex;
+          flex-direction: column;
+
+          &.with-image {
+            flex: 87% 0 0;
+          }
+
+          &.without-image {
+            flex: 100% 0 0;
+          }
+
+          .title {
+            font-size: 20px;
+            line-height: 24px;
+            color: #1a0dab !important;
+
+            &:visited {
+              color: #609 !important;
+            }
+          }
+
+          .url {
+            word-wrap: break-word;
+            color: #006621 !important;
+            padding-top: 1px;
+            padding-bottom: 0;
+            line-height: 24px;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: text;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+          }
+
+          .description {
+            line-height: 20px;
+            color: $text-color-primary;
+            font-size: 13px;
+            padding-bottom: 10px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin relatedSearch($device-name, $orientation) {
+  @if ($device-name == "mobile") {
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.14);
+    background-color: #fff !important;
+    margin: 8px 0 !important;
+    padding: 16px 0 0 0 !important;
+
+    h2 {
+      padding: 0 10px 16px 16px;
+      font-size: 14px;
+      line-height: 20px;
+      color: $text-color-primary-dark;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        border-top: 1px solid #ececec;
+        line-height: 20px;
+        padding: 12px 16px;
+
+        a {
+          font-size: 14px;
+          font-weight: normal;
+        }
+
+        .search-icon {
+          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAJ1BMVEUAAAB1dXVwcHB3d3d1dXV2dnZ2dnZ1dXV2dnZ2dnZ1dXV3d3d2dnZM0kCXAAAADHRSTlMAsBAggFDQMPCgPZADTT2XAAAAWUlEQVR42m3P1QHDUAxDUfkx3P3nLaiY5HyarbsaQFTJUmCRHAgoWblA6KFC10OH6oIiKy6BLMvggN7gVHGe8btl4S2anztG+r900Bx5/5KaI1+XkdB/JPYNByIDjXDNsx4AAAAASUVORK5CYII=);
+          width: 16px;
+          height: 16px;
+          margin-top: 2px;
+        }
+      }
+    }
+  } @else if $device-name == "tablet" and $orientation == "portrait" {
+    width: 648px;
+    margin-left: 56px;
+
+    h2 {
+      padding: 0 10px 16px 0;
+      font-size: 14px;
+      line-height: 20px;
+      color: $text-color-primary-dark;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        border-top: 1px solid #ececec;
+        line-height: 20px;
+        padding: 12px 12px 12px 0;
+
+        a {
+          font-size: 14px;
+          font-weight: normal;
+        }
+
+        .search-icon {
+          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAJ1BMVEUAAAB1dXVwcHB3d3d1dXV2dnZ2dnZ1dXV2dnZ2dnZ1dXV3d3d2dnZM0kCXAAAADHRSTlMAsBAggFDQMPCgPZADTT2XAAAAWUlEQVR42m3P1QHDUAxDUfkx3P3nLaiY5HyarbsaQFTJUmCRHAgoWblA6KFC10OH6oIiKy6BLMvggN7gVHGe8btl4S2anztG+r900Bx5/5KaI1+XkdB/JPYNByIDjXDNsx4AAAAASUVORK5CYII=);
+          width: 16px;
+          height: 16px;
+          margin-top: 2px;
+        }
+      }
+    }
+  } @else {
+    $width: 432px;
+
+    @if $device-name == "tablet" and $orientation == "landscape" {
+      $width: 200px;
+    }
+
+    flex: 0 0 $width;
+    padding: 0 20px;
+    margin: 52px 0 0 40px;
+
+    h2 {
+      font-size: 20px;
+      font-weight: normal;
+      line-height: 24px;
+      padding-bottom: 11px;
+      margin-bottom: 0;
+    }
+
+    ul {
+      border: 0;
+      border-collapse: collapse;
+      border-spacing: 0;
+      list-style: none;
+      padding: 0;
+
+      li {
+        &:not(:last-child) {
+          padding: 0 0 10px 0;
+        }
+
+        border: 0;
+        border-collapse: collapse;
+        border-spacing: 0;
+        list-style: none;
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.2em;
+      }
+    }
+  }
+}
+
+@mixin leftSideBlank($device-name) {
+  $width: 100px;
+
+  @if ($device-name == "tablet") {
+    $width: 35px;
+  }
+
+  .left-side-blank {
+    flex: 0 0 $width;
+    height: 200px !important;
+  }
+}
+
+@mixin tableScroll() {
+  &::-webkit-scrollbar {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: rgb(221, 221, 221);
+    border-radius: 10px;
+    height: 5px !important;
+    width: 5px !important;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgb(73, 73, 73);
+    border-radius: 10px;
+    height: 4px !important;
+    width: 4px !important;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(53, 53, 53);
+  }
+}
+
+@mixin tableScrollV2() {
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    height: 5px !important;
+    width: 5px !important;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgb(73, 73, 73);
+    border-radius: 10px;
+    height: 4px !important;
+    width: 4px !important;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(53, 53, 53);
+  }
+}
+
+@mixin scrollbarDesign() {
+  $track-color: #f1f1f1;
+  $thumb-color: #c1c1c1;
+  $thumb-hover-color: #a4a4a4;
+
+  //Custom Scrollbar for webkit
+  &::-webkit-scrollbar {
+    width: 5px !important;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+    border-radius: 20px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: 20px;
+    height: 10px !important;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $thumb-hover-color;
+  }
+}
+
+@mixin scrollbarDesignMonitoringMenu() {
+  $track-color: #ffffff;
+  $thumb-color: #377ef9;
+  $thumb-hover-color: #ececec;
+
+  //Custom Scrollbar for webkit
+  &::-webkit-scrollbar {
+    width: 5px !important;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+    border-radius: 20px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: 20px;
+    height: 30px !important;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $thumb-hover-color;
+  }
+}
+
+@mixin paginationContainer($device-name) {
+  @if ($device-name == "mobile") {
+    padding: 0 10px;
+    margin: 10px 5px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.14);
+    background-color: #fff;
+
+    .pagination {
+      justify-content: center;
+
+      .previous-item {
+        margin-right: 8px !important;
+
+        img {
+          transform-origin: 484px 24px;
+        }
+      }
+
+      .next-item {
+        margin-right: 0 !important;
+      }
+
+      .page-item {
+        a.page-link {
+          margin-right: 8px;
+          font-size: 14px !important;
+          font-weight: 600 !important;
+
+          .first-label {
+            color: #444;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 44px;
+            padding-top: 2px;
+          }
+
+          .page-label {
+            padding-top: 6px !important;
+          }
+        }
+      }
+    }
+  } @else {
+    padding: 26px 0 26px 20px;
+    margin: 0 0 2px 100px;
+
+    .pagination {
+      .previous-item {
+        img {
+          transform-origin: 484px 25px;
+        }
+      }
+    }
+  }
+}
+
+@mixin slimScrollbarMDTable() {
+  $track-color: #f1f1f1;
+  $thumb-color: #c1c1c1;
+  $thumb-hover-color: #a4a4a4;
+
+  //Custom Scrollbar for webkit
+  ::-webkit-scrollbar {
+    width: 5px !important;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $track-color;
+    border-radius: 20px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: 20px;
+    height: 30px !important;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $thumb-hover-color;
+  }
+}

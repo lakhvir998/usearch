@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import ReactGA from "react-ga";
+import { useLocation } from "react-router-dom";
+import HomepageV2 from "./pages/homepage";
+import Header from "./Header";
 
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    ReactGA.pageview(location.pathname);
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-wrapper">
+      <Header />
+      <HomepageV2 />
     </div>
   );
 }

@@ -1,0 +1,68 @@
+$text-color-primary: #666;
+$text-color-primary-dark: #444;
+$mainLightBlue: #60a5da;
+
+$lightGray: #f0f3f7;
+$lightBlue: #377ef9;
+$lightBlue2: #267be7;
+$darkBlue: #2c44ff;
+$textGray: #152842;
+$textGrayLight20: #152842d1;
+
+$mobile-device-breakpoint: 575.98px;
+$fontGilroyBold: "Gilroy-Bold", Helvetica, sans-serif !important;
+$fontGilroyExtraBold: "Gilroy-ExtraBold", Helvetica, sans-serif !important;
+$fontGilroySemiBold: "Gilroy-SemiBold", Helvetica, sans-serif !important;
+$fontGilroyMedium: "Gilroy-Medium", Helvetica, sans-serif !important;
+$fontGilroyRegular: "Gilroy-Regular", Helvetica, sans-serif !important;
+$fontGilroyLight: "Gilroy-Light", Helvetica, sans-serif !important;
+
+$fontMulish300: "Mulish-300", Helvetica, sans-serif !important;
+$fontMulish400: "Mulish-400", Helvetica, sans-serif !important;
+$fontMulish500: "Mulish-500", Helvetica, sans-serif !important;
+$fontMulish600: "Mulish-600", Helvetica, sans-serif !important;
+$fontMulish700: "Mulish-700", Helvetica, sans-serif !important;
+$fontMulish800: "Mulish-800", Helvetica, sans-serif !important;
+$fontMulish900: "Mulish-900", Helvetica, sans-serif !important;
+
+$imgShadow: 0 0 13px -5px #989898;
+$imgShadowSofter: 0.907117px 0px 9.07117px rgba(173, 184, 216, 0.2);
+
+$companyBannerWidth: 271px;
+
+@mixin cardStyle {
+  background: #ffffff;
+  box-shadow: 1px 0px 10px rgba(173, 184, 216, 0.2);
+  border-radius: 18px;
+}
+
+@mixin cardStyle2 {
+  border: 1px solid #edeff2;
+  box-shadow: 0px 0px 4px rgba(70, 78, 140, 0.1);
+  border-radius: 8px;
+}
+
+@mixin imageShadow {
+  box-shadow: $imgShadowSofter;
+}
+
+@mixin paginationDetails {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  font-size: 14px;
+  color: #4f5765;
+  font-family: $fontMulish400;
+
+  b {
+    font-family: $fontMulish600;
+    color: #000;
+  }
+
+  @include media(mobile) {
+    position: initial;
+    text-align: center;
+  }
+}

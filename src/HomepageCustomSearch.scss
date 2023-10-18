@@ -1,0 +1,53 @@
+@import "./assets/SCSS/media";
+
+.usearch__homepage {
+  &__custom-search {
+    &-inner {
+      @include media(smallTablet) {
+        flex-direction: column-reverse !important;
+      }
+    }
+    &-container {
+      padding: 120px 0;
+    }
+
+    &__background-curve {
+      position: absolute;
+      top: -50px;
+      color: #469ada;
+      z-index: 1;
+
+      @include media(mobile) {
+        top: -15px;
+      }
+    }
+
+    &__content {
+      color: #122840;
+    }
+
+    &__action {
+    }
+
+    &__image-container {
+      img {
+        width: 100%;
+        border-radius: 10px;
+        min-height: 410px;
+        height: auto;
+
+        @include media(largeDesktop) {
+          min-height: 376px;
+        }
+
+        @include media(middleTablet) {
+          min-height: 302px;
+        }
+
+        @include media(mobile) {
+          min-height: 264px;
+        }
+      }
+    }
+  }
+}
