@@ -18,14 +18,14 @@ const HomepageHero = () => {
         url: "/company-locations",
       }}
       isReversed={true}
-      // img={
-      //   <img
-      //     width="626"
-      //     height="442"
-      //     src={`${process.env.REACT_APP_CLOUDFRONT_URL}/homepage/image_1_v2_2.webp`}
-      //     alt="Enhanced Business Location Data with Real Time Alerts"
-      //   />
-      // }
+      img={
+        <img
+          width="626"
+          height="442"
+          src={`${process.env.REACT_APP_CLOUDFRONT_URL}/homepage/image_1_v2_2.webp`}
+          alt="Enhanced Business Location Data with Real Time Alerts"
+        />
+      }
     />
   );
 };

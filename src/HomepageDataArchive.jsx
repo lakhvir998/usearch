@@ -16,14 +16,14 @@ const HomepageDatasets = () => {
         actionName: "Button Click - Explore Datasets Archive",
         url: "/data-archive",
       }}
-      // img={
-      //   <img
-      //     width="533"
-      //     height="410"
-      //     src={`${process.env.REACT_APP_CLOUDFRONT_URL}/homepage/image_5.svg`}
-      //     alt="Get Access To Usearch’s Web Data Archive"
-      //   />
-      // }
+      img={
+        <img
+          width="533"
+          height="410"
+          src={`${process.env.REACT_APP_CLOUDFRONT_URL}/homepage/image_5.svg`}
+          alt="Get Access To Usearch’s Web Data Archive"
+        />
+      }
     />
   );
 };

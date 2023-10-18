@@ -16,15 +16,15 @@ const HomepageQueryKeywoards = () => {
       }}
       lazyLoad={false}
       //isReversed={true}
-      // img={
-      //   <img
-      //     fetchpriority="high"
-      //     width={400}
-      //     height={286}
-      //     src={`${process.env.REACT_APP_CLOUDFRONT_URL}/homepage/image_6.webp`}
-      //     alt="Market and Competitive Intelligence Platform"
-      //   />
-      // }
+      img={
+        <img
+          fetchpriority="high"
+          width={400}
+          height={286}
+          src={`${process.env.REACT_APP_CLOUDFRONT_URL}/homepage/image_6.webp`}
+          alt="Market and Competitive Intelligence Platform"
+        />
+      }
     />
   );
 };

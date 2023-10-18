@@ -17,14 +17,14 @@ const HomepageDatasets = () => {
         actionName: "Button Click - Explore Market Signals and Data Feeds",
         url: "/market-signals-and-data-feeds",
       }}
-      // img={
-      //   <img
-      //     width="510"
-      //     height="410"
-      //     src={`${process.env.REACT_APP_CLOUDFRONT_URL}/homepage/image_4.svg`}
-      //     alt="Data Feeds"
-      //   />
-      // }
+      img={
+        <img
+          width="510"
+          height="410"
+          src={`${process.env.REACT_APP_CLOUDFRONT_URL}/homepage/image_4.svg`}
+          alt="Data Feeds"
+        />
+      }
     />
   );
 };

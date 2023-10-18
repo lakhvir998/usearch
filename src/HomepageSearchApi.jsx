@@ -17,14 +17,14 @@ const HomepageSearchApi = () => {
         url: "/web-search-api",
       }}
       isReversed={false}
-      // img={
-      //   <img
-      //     width="552"
-      //     height="453"
-      //     src={`${process.env.REACT_APP_CLOUDFRONT_URL}/homepage/image_3.webp`}
-      //     alt="Search API"
-      //   />
-      // }
+      img={
+        <img
+          width="552"
+          height="453"
+          src={`${process.env.REACT_APP_CLOUDFRONT_URL}/homepage/image_3.webp`}
+          alt="Search API"
+        />
+      }
     />
   );
 };
