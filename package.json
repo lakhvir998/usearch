@@ -1,7 +1,7 @@
 {
   "name": "usearch",
   "version": "0.1.0",
-  "homepage": "https://lakhvir998.github.io/speed-test/",
+  "homepage": "https://lakhvir998.github.io/speed-test",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
@@ -33,7 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
